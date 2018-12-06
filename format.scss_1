@@ -1,0 +1,27 @@
+$base-color: #FB8604;
+@mixin myRing ($x, $color) {
+  border-radius: 50%;
+  border: $x/20 solid $color;
+  width: $x;
+  height: $x;
+  box-shadow: inset $x/20 $x/20 $x/30 darken($color, 10), $x/20 $x/20 $x/30 darken($color, 10);
+}
+
+.cercleOrange {
+  @include myRing(50px, $base-color)
+}
+
+#cercleJaune {
+  @include myRing(200px, lighten( $base-color, 10% ))
+}
+
+@for $i from 1 through 6 {
+  #cercles-#{$i} {
+    @include myRing(50px + $i * 20, darken( $base-color, 10% ));
+    transform: translateX($i * -25%);
+  }
+}
+
+#cercles {
+  transform: translateX(10%);
+}
